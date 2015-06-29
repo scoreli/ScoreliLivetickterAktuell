@@ -3,16 +3,20 @@ package tk.scoreli.liveticker.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import tk.scoreli.liveticker.NavigationDrawerFragment;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
+/**
+ * Hier wird die SqlLite Datenbank konfiguriert. Diese wird dann erstellt.
+ * Hier sind auch alle Methoden vermerkt die für die Datenbankzugriffe
+ * notwendig sind. Hierbei werden jeweils Sql zugriffe vollzogen. In diese
+ * Datenbank werden die Spiele gespeichert.
+ * @author philipp
+ */
 public class DatabasehandlerSpiele extends SQLiteOpenHelper {
-
+	
 	// All Static variables
 	// Database Version
 	private static final int DATABASE_VERSION = 1;
@@ -37,10 +41,8 @@ public class DatabasehandlerSpiele extends SQLiteOpenHelper {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
-	
-
 	/**
-	 * Mit dieser Methode wird die Sql-lite Datenbank gebaut. Hierbei wird ein
+	 * Mit dieser Methode wird die Sql-lite Datenbank gebaut bzw. die Tabelle. Hierbei wird ein
 	 * Sql-Befehl erzeugt und dieser dann ausgeführt.(execSQL)
 	 */
 	@Override
@@ -112,7 +114,7 @@ public class DatabasehandlerSpiele extends SQLiteOpenHelper {
 				Veranstaltung_Spielbeginn, Veranstaltung_Status },
 				Veranstaltung_ID + "=?", new String[] { String.valueOf(id) },
 				null, null, null, null);
-		if (cursor != null){
+		if (cursor != null) {
 			cursor.moveToFirst();
 		}
 		Veranstaltung veranstaltung = new Veranstaltung(Integer.parseInt(cursor
@@ -122,7 +124,7 @@ public class DatabasehandlerSpiele extends SQLiteOpenHelper {
 				cursor.getString(7));
 		db.close(); // Closing database connection
 		// return contact
-		
+
 		return veranstaltung;
 	}
 
@@ -233,10 +235,11 @@ public class DatabasehandlerSpiele extends SQLiteOpenHelper {
 		// return contact list
 		return veranstaltungliste;
 	}
+
 	/**
 	 * Bei dieser Methode wird mit einer SQL-Abfrage alle Veranstaltungseinträge
-	 * geholt die der Sportart Handball angehören. Diese werden in einer
-	 * List<> zurückgegeben.
+	 * geholt die der Sportart Handball angehören. Diese werden in einer List<>
+	 * zurückgegeben.
 	 * 
 	 * @return
 	 */
@@ -268,6 +271,7 @@ public class DatabasehandlerSpiele extends SQLiteOpenHelper {
 		// return contact list
 		return veranstaltungliste;
 	}
+
 	/**
 	 * Bei dieser Methode wird mit einer SQL-Abfrage alle Veranstaltungseinträge
 	 * geholt die der Sportart Volleyball angehören. Diese werden in einer
@@ -303,7 +307,14 @@ public class DatabasehandlerSpiele extends SQLiteOpenHelper {
 		// return contact list
 		return veranstaltungliste;
 	}
-	// Updating single contact
+
+	/**
+	 * Bei dieser Methode wird mit einer SQL-Abfrage die Veranstaltung
+	 * geupdatet. Diese wird mit der ID- Referenziert.
+	 * 
+	 * @param veranstaltung
+	 * @return
+	 */
 	public int updateVeranstaltung(Veranstaltung veranstaltung) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
@@ -320,16 +331,20 @@ public class DatabasehandlerSpiele extends SQLiteOpenHelper {
 				veranstaltung.getSpielstandGast()); // SpielstandGast
 		values.put(Veranstaltung_Spielbeginn, veranstaltung.getSpielbeginn());// Spielbeginn
 		values.put(Veranstaltung_Status, veranstaltung.getStatus());// Status
-		db.update(TABLE_Veranstaltungen, values, Veranstaltung_ID
-				+ " = ?",
-				new String[] { String.valueOf(veranstaltung.getId())}) ;
+		db.update(TABLE_Veranstaltungen, values, Veranstaltung_ID + " = ?",
+				new String[] { String.valueOf(veranstaltung.getId()) });
 		// updating row
 		db.close(); // Closing database connection
 		return 1;
-		
+
 	}
 
-	// Deleting single contact
+	/**
+	 * Bei dieser Methode wird eine Veranstaltung mit einer SQL-Abfrage
+	 * gelöscht. Hierbei wird sie auch über die ID-Referenziert.
+	 * 
+	 * @param veranstaltung
+	 */
 	public void deleteVeranstaltung(Veranstaltung veranstaltung) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.delete(TABLE_Veranstaltungen, Veranstaltung_ID + " = ?",
@@ -337,7 +352,10 @@ public class DatabasehandlerSpiele extends SQLiteOpenHelper {
 		db.close();
 	}
 
-	// Getting contacts Count
+	/**
+	 * Hier werden alle Veranstaltungseinträge gezählt.
+	 * @return
+	 */
 	public int getVeranstaltungCount() {
 		String countQuery = "SELECT  * FROM " + TABLE_Veranstaltungen;
 		SQLiteDatabase db = this.getReadableDatabase();
@@ -349,8 +367,8 @@ public class DatabasehandlerSpiele extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * Re crate database Delete all tables and create them again
-	 * */
+	 * Hier wird die ganze Datenbank gelöscht.
+	 */
 	public void deleteVeranstaltungen() {
 		SQLiteDatabase db = this.getWritableDatabase();
 		// Delete All Rows

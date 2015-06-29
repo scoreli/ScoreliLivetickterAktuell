@@ -41,8 +41,21 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+/**
+ * Das ist die Hauptactivity. Auf sie gelangt man beim Start der App. Dort
+ * werden die Spiele angezeigt und von dort gelangt man auch zu den anderen
+ * Activitys.
+ * 
+ * @author philipp
+ *
+ */
 public class MainActivity extends Activity implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks {
+	/**
+	 * Datenbankanbindung wird erzeugt durch ein Objekt des Databasehandler
+	 * 
+	 * @author philipp
+	 */
 	DatabasehandlerSpiele db = new DatabasehandlerSpiele(this);
 	private SessionManager session;
 	ListView Veranstaltungenliste;
@@ -109,6 +122,8 @@ public class MainActivity extends Activity implements
 			 * wird die Methode getTischtennisVeranstaltungen() aufgerufen.
 			 * Dabei muss die Liste in ein ArrayAdapter des Typs Veranstaltung
 			 * erzeugt werden und die Liste übergeben werden.
+			 * 
+			 * @author philipp
 			 */
 			Veranstaltungenliste.setVisibility(View.VISIBLE);
 			veranstaltungen = db.getTischtennisVeranstaltungen();
@@ -147,9 +162,9 @@ public class MainActivity extends Activity implements
 		case 5:
 			mTitle = getString(R.string.title_Sportart4);
 			/**
-			 * Hier werden alle Volleyballveranstaltungen angzeigt. Hierbeit wird
-			 * die Methode getVolleyballVeranstaltungen() aufgerufen. Dabei muss
-			 * die Liste in ein ArrayAdapter des Typs Veranstaltung erzeugt
+			 * Hier werden alle Volleyballveranstaltungen angzeigt. Hierbeit
+			 * wird die Methode getVolleyballVeranstaltungen() aufgerufen. Dabei
+			 * muss die Liste in ein ArrayAdapter des Typs Veranstaltung erzeugt
 			 * werden und die Liste übergeben werden.
 			 */
 			Veranstaltungenliste.setVisibility(View.VISIBLE);
@@ -220,7 +235,8 @@ public class MainActivity extends Activity implements
 		}
 		if (id == R.id.menu_Spiele) {
 			/**
-			 * Kann nur aufgerufen werden wenn man eingeloggt ist.
+			 * Kann nur aufgerufen werden wenn man eingeloggt ist. Dort wird
+			 * dann die Spiele des Useres angezeigt.
 			 */
 			if (session.isLoggedIn()) {
 				startActivity(new Intent(MainActivity.this,

@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import tk.scoreli.liveticker.ImSpielActivity;
 import tk.scoreli.liveticker.NavigationDrawerFragment;
 import tk.scoreli.liveticker.NeuesSpielActivity;
+import tk.scoreli.liveticker.SpieleDesUsersActivity;
 import tk.scoreli.liveticker.data.DatabasehandlerSpiele;
 import tk.scoreli.liveticker.data.Veranstaltung;
 import tk.scoreli.liveticker.loginregister.AppConfig;
@@ -24,10 +25,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.Request.Method;
 import com.android.volley.toolbox.StringRequest;
 
+/**
+ * Diese Activity regelt die Kommunikation mit dem Internet und schickt und holt
+ * die Veranstaltungen usw.
+ * 
+ * @author philipp
+ *
+ */
 public class InternetService extends Activity {
 	private static final String TAGregister = NeuesSpielActivity.class
 			.getSimpleName();
-
+	public SpieleDesUsersActivity desUsers;
 	DatabasehandlerSpiele db;
 	private static final String TAG_Veranstaltungen = "veranstaltung";
 	// Für die Veranstaltungen holen
@@ -35,7 +43,9 @@ public class InternetService extends Activity {
 			.getSimpleName();
 	private static final String TAGimSpiel = ImSpielActivity.class
 			.getSimpleName();
-
+	private static final String TAG_VeranstaltungenUserLogcat = SpieleDesUsersActivity.class
+			.getSimpleName();
+	private static final String TAG_VeranstaltungenDesUsers = "veranstaltungdesusers";
 	private ProgressDialog pDialog;
 	Activity hans;
 
@@ -49,6 +59,27 @@ public class InternetService extends Activity {
 	public InternetService(Activity servus) {
 		db = new DatabasehandlerSpiele(servus.getApplicationContext());
 		hans = servus;
+
+		// Progress dialog
+		// Geht nicht
+		// pDialog = new ProgressDialog(servus.getApplicationContext());
+		// pDialog.setCancelable(false);
+	}
+
+	/**
+	 * Hierbei wird die Activity übergeben und dann dem Attribut der Klasse
+	 * Internet Service übergeben. Dies ist nötig, da die Methoden auf die
+	 * Activity zugreigen. Und so können sie das. Außerdem wird noch die Spiele
+	 * des User Activity übergeben. Damit Veranstaltung anzeigen funktioniert.
+	 * 
+	 * @param servus
+	 * @param spieledesUsers
+	 */
+	public InternetService(Activity servus,
+			SpieleDesUsersActivity spieledesUsers) {
+		db = new DatabasehandlerSpiele(servus.getApplicationContext());
+		hans = servus;
+		desUsers = spieledesUsers;
 		// Progress dialog
 		// Geht nicht
 		// pDialog = new ProgressDialog(servus.getApplicationContext());
@@ -185,7 +216,9 @@ public class InternetService extends Activity {
 
 	/**
 	 * Die Funktion holt alle Veranstaltungen und speichert diese in die
-	 * Internet My_Sqllite Datenbank ab.
+	 * My_Sqllite Datenbank ab. Dies wird nach der gleichen vorhergehensweise
+	 * realisiert wie in registerVeranstaltung(). Da die gleiche Bibliothek
+	 * benutzt wird.
 	 * */
 	public void Veranstaltungholen() {
 		// Tag used to cancel the request
@@ -292,79 +325,66 @@ public class InternetService extends Activity {
 		AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
 	}
 
-	public void Veranstaltungbeenden(final String veranstaltungs_id,
-			final String user_id) {
-		// Tag used to cancel the request
-		String tag_string_req = "req_beendeVeranstaltung";
-
-		// pDialog.setMessage("Beenden der Veranstaltung ...");
-		// showDialog();
-
-		StringRequest strReq = new StringRequest(Method.POST,
-				AppConfig.URL_VERANSTALTUNG, new Response.Listener<String>() {
-
-					@Override
-					public void onResponse(String response) {
-						Log.d(TAGimSpiel,
-								"Veranstaltung Response: "
-										+ response.toString());
-						// hideDialog();
-
-						try {
-
-							/*
-							 * Toast.makeText(getApplicationContext(),
-							 * response.toString(), Toast.LENGTH_SHORT) .show();
-							 */
-
-							JSONObject jObj = new JSONObject(response);
-							boolean error = jObj.getBoolean("error");
-							if (!error) {
-
-								Toast.makeText(hans.getApplicationContext(),
-										"Beendet", Toast.LENGTH_SHORT).show();
-							} else {
-								Toast.makeText(hans.getApplicationContext(),
-										"Beenden fehlgeschlagen",
-										Toast.LENGTH_SHORT).show();
-							}
-						} catch (JSONException e) { // JSON error
-							e.printStackTrace();
-						}
-
-					}
-
-				}, new Response.ErrorListener() {
-
-					@Override
-					public void onErrorResponse(VolleyError error) {
-						Log.e(TAGimSpiel,
-								"Beenden Error: " + error.getMessage());
-
-						Toast.makeText(hans.getApplicationContext(),
-								error.getMessage(), Toast.LENGTH_LONG).show();
-						// hideDialog();
-
-					}
-				}) {
-
-			@Override
-			protected Map<String, String> getParams() {
-				// Posting params to register url
-				Map<String, String> params = new HashMap<String, String>();
-				params.put("tag", "beendeveranstaltung");
-				params.put("veranstaltungs_id", veranstaltungs_id);
-				params.put("user", user_id);
-				return params;
-			}
-
-		};
-
-		// Adding request to request queue
-		AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-
-	}
-
+	/*
+	 * public void Veranstaltungbeenden(final String veranstaltungs_id, final
+	 * String user_id) { // Tag used to cancel the request String tag_string_req
+	 * = "req_beendeVeranstaltung"; /* //
+	 * pDialog.setMessage("Beenden der Veranstaltung ..."); // showDialog();
+	 * 
+	 * StringRequest strReq = new StringRequest(Method.POST,
+	 * AppConfig.URL_VERANSTALTUNG, new Response.Listener<String>() {
+	 * 
+	 * @Override public void onResponse(String response) { Log.d(TAGimSpiel,
+	 * "Veranstaltung Response: " + response.toString()); // hideDialog();
+	 * 
+	 * try {
+	 * 
+	 * /* Toast.makeText(getApplicationContext(), response.toString(),
+	 * Toast.LENGTH_SHORT) .show();
+	 */
+	/*
+	 * JSONObject jObj = new JSONObject(response); boolean error =
+	 * jObj.getBoolean("error"); if (!error) {
+	 * 
+	 * Toast.makeText(hans.getApplicationContext(), "Beendet",
+	 * Toast.LENGTH_SHORT).show(); } else {
+	 * Toast.makeText(hans.getApplicationContext(), "Beenden fehlgeschlagen",
+	 * Toast.LENGTH_SHORT).show(); } } catch (JSONException e) { // JSON error
+	 * e.printStackTrace(); }
+	 * 
+	 * }
+	 * 
+	 * }, new Response.ErrorListener() {
+	 * 
+	 * @Override public void onErrorResponse(VolleyError error) {
+	 * Log.e(TAGimSpiel, "Beenden Error: " + error.getMessage());
+	 * 
+	 * Toast.makeText(hans.getApplicationContext(), error.getMessage(),
+	 * Toast.LENGTH_LONG).show(); // hideDialog();
+	 * 
+	 * } }) {
+	 * 
+	 * @Override protected Map<String, String> getParams() { // Posting params
+	 * to register url Map<String, String> params = new HashMap<String,
+	 * String>(); params.put("tag", "beendeveranstaltung");
+	 * params.put("veranstaltungs_id", veranstaltungs_id); params.put("user",
+	 * user_id); return params; }
+	 * 
+	 * };
+	 * 
+	 * // Adding request to request queue
+	 * AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+	 * 
+	 * }
+	 */
+	/**
+	 * Bei dieser Methode wird eine Veranstaltung gelöscht. Dabei wird die
+	 * veranstaltungs_id und die user_id (uuid) benötigt. Es wird dabei wieder
+	 * die Volleybibliothek benutzt.
+	 * 
+	 * @param veranstaltungs_id
+	 * @param user_id
+	 */
 	public void Veranstaltungloeschen(final String veranstaltungs_id,
 			final String user_id) {
 		// Tag used to cancel the request
@@ -438,7 +458,9 @@ public class InternetService extends Activity {
 	}
 
 	/**
-	 * Muss noch geändert werden damit es was empfängt
+	 * Bei dieser Mehtode wird die Veranstaltung geupdatet. Dabei wird wieder
+	 * die Volleybibiliothek benutzt. Aber die geänderte Veranstaltung wird
+	 * nicht wieder empfangen .
 	 * 
 	 * @param punkteHeim
 	 * @param punkteGast
@@ -545,6 +567,122 @@ public class InternetService extends Activity {
 				params.put("veranstaltungs_id", veranstaltungs_id);
 				params.put("status", status);
 
+				return params;
+			}
+
+		};
+
+		// Adding request to request queue
+		AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+	}
+
+	/**
+	 * Hier werden nur die Veranstaltungen des Users geholt. Diese Methode ist
+	 * wieder mit der Volleybibliothek realisiert. Sie ist nötig das man diese
+	 * löschen oder ändern kann.
+	 * 
+	 * @param user_id
+	 */
+	public void VeranstaltungholenDesUsers(final String user_id) {
+		// Tag used to cancel the request
+		String tag_string_req = "req_holendesUsers";
+
+		// pDialog.setMessage("Holen ...");
+		// showDialog();
+
+		StringRequest strReq = new StringRequest(Method.POST,
+				AppConfig.URL_VERANSTALTUNG, new Response.Listener<String>() {
+
+					@Override
+					public void onResponse(String response) {
+						Log.d(TAG_VeranstaltungenUserLogcat,
+								"Veranstaltung Response: "
+										+ response.toString());
+						// hideDialog();
+						try {
+
+							// Toast.makeText(hans.getApplicationContext(),
+							// response.toString(), Toast.LENGTH_SHORT) .show();
+
+							JSONObject jObj = new JSONObject(response);
+							// boolean error = jObj.getBoolean("error");
+							boolean error = false;
+							if (!error) {
+								// User successfully stored in MySQL
+								// Now store the user in sqlite
+								db.deleteVeranstaltungen();
+
+								JSONArray uebergabe = jObj
+										.getJSONArray(TAG_VeranstaltungenDesUsers);
+								for (int i = 0; i < uebergabe.length(); i++) {
+									JSONObject veranstaltung = uebergabe
+											.getJSONObject(i);
+									String idj = veranstaltung
+											.getString("veranstaltung_id");
+									String heimmannschaftj = veranstaltung
+											.getString("heimmannschaft");
+									String gastmannschaftj = veranstaltung
+											.getString("gastmannschaft");
+									String punkteHeimj = veranstaltung
+											.getString("punkteHeim");
+									String punkteGastj = veranstaltung
+											.getString("punkteGast");
+									String statusj = veranstaltung
+											.getString("status");
+									String sportartj = veranstaltung
+											.getString("sportart");
+									String spielbeginnj = veranstaltung
+											.getString("spielbeginn");
+									db.addVeranstaltung(new Veranstaltung(Long
+											.parseLong(idj), sportartj,
+											heimmannschaftj, gastmannschaftj,
+											Integer.parseInt(punkteHeimj),
+											Integer.parseInt(punkteGastj),
+											spielbeginnj, statusj));
+
+									desUsers.Veranstaltungzeigen();
+								}
+
+								Toast.makeText(hans.getApplicationContext(),
+										"Aktualisiert", Toast.LENGTH_SHORT)
+										.show();
+							} else {
+
+								// Error occurred in registration. Get the error
+								// message
+								// String errorMsg =
+								// jObj.getString("error_msg");
+
+								// Toast.makeText(hans.getApplicationContext(),
+								// errorMsg, Toast.LENGTH_LONG).show();
+
+							}
+						} catch (JSONException e) {
+							// JSON error
+							e.printStackTrace();
+						}
+					}
+
+				}, new Response.ErrorListener() {
+
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Log.e(TAG_VeranstaltungenUserLogcat,
+								"Registration Error: " + error.getMessage());
+
+						Toast.makeText(hans.getApplicationContext(),
+								error.getMessage(), Toast.LENGTH_LONG).show();
+						// hideDialog();
+
+					}
+				}) {
+
+			@Override
+			protected Map<String, String> getParams() {
+				// Posting params to register url
+				Map<String, String> params = new HashMap<String, String>();
+				params.put("tag", "holeveranstaltungendesusers");
+				params.put("user", user_id);
 				return params;
 			}
 

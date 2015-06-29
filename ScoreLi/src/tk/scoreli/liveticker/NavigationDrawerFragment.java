@@ -114,7 +114,8 @@ public class NavigationDrawerFragment extends Fragment {
 					}
 				});
 		/**
-		 * Hier kann man die Einzelen..
+		 * Hier kann man die Einzelen Section von der Navigation Bar hinzufügen.
+		 * Diese muss aber auch dann als String in res vorliegen.
 		 */
 		mDrawerListView.setAdapter(new ArrayAdapter<String>(getActionBar()
 				.getThemedContext(),
@@ -124,7 +125,7 @@ public class NavigationDrawerFragment extends Fragment {
 						getString(R.string.title_Sportart1),
 						getString(R.string.title_Sportart2),
 						getString(R.string.title_Sportart3),
-						getString(R.string.title_Sportart4),}));
+						getString(R.string.title_Sportart4), }));
 		mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 		return mDrawerListView;
 	}
@@ -284,9 +285,10 @@ public class NavigationDrawerFragment extends Fragment {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
-/**
- * Beim Drücken des Aktualisieren Buttons wird die Methode von Internet Service Aufgerufen.
- */
+		/**
+		 * Beim Drücken des Aktualisieren Buttons wird die Methode von Internet
+		 * Service Aufgerufen.
+		 */
 		if (item.getItemId() == R.id.action_example) {
 			internetService.Veranstaltungholen();
 			Toast.makeText(getActivity(), "Aktualisiert", Toast.LENGTH_SHORT)

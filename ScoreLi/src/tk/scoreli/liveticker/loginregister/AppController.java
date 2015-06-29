@@ -7,12 +7,15 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+/**
+ * Diese Klasse regelt die Anfragen an den Server. Wichtig ist hierbei das auch
+ * das Android Volley.jar eingebunden ist in libs. Sonst schmeist es eine
+ * Nullpointer.
+ * 
+ * @author philipp
+ */
 public class AppController extends Application {
-	/**
-	 * Wichtig ist hierbei das auch das Android Volley.jar eingebunden ist in
-	 * libs. Sonst schmeist es eine Nullpointer. Diese Klasse regelt die
-	 * Anfragen an den Server.
-	 */
+
 	public static final String TAG = AppController.class.getSimpleName();
 
 	private RequestQueue mRequestQueue;

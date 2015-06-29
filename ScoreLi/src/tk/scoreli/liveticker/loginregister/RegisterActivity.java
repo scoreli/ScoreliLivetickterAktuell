@@ -34,7 +34,7 @@ import com.android.volley.toolbox.StringRequest;
  */
 
 /**
- * Auch größtenteils von Android Hive übernommen
+ * Die Klasse regelt die Registration eines neuen Users.
  * 
  * @author philipp
  *
@@ -43,7 +43,7 @@ public class RegisterActivity extends Activity {
 	private static final String TAG = RegisterActivity.class.getSimpleName();
 	private ProgressDialog pDialog;
 	private SessionManager session;
-	private SQLiteHandlerLogin dblogin;
+	//private SQLiteHandlerLogin dblogin;
 
 	/**
 	 * Keep track of the login task to ensure we can cancel it if requested.
@@ -69,7 +69,7 @@ public class RegisterActivity extends Activity {
 		session = new SessionManager(getApplicationContext());
 
 		// SQLite database handler
-		dblogin = new SQLiteHandlerLogin(getApplicationContext());
+	//	dblogin = new SQLiteHandlerLogin(getApplicationContext());
 
 		// Check if user is already logged in or not
 		if (session.isLoggedIn()) {
@@ -276,7 +276,7 @@ public class RegisterActivity extends Activity {
 										.getString("created_at");
 
 								// Inserting row in users table
-								dblogin.addUser(name, email, uid, created_at);
+							//	dblogin.addUser(name, email, uid, created_at);
 
 								// Launch login activity
 								Intent intent = new Intent(

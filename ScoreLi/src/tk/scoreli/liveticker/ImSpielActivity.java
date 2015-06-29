@@ -10,7 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import tk.scoreli.liveticker.bluetooth.BluetoothService;
-import tk.scoreli.liveticker.bluetooth.DeviceListActivity;
+import tk.scoreli.liveticker.bluetooth.GeräteSuchen;
 import tk.scoreli.liveticker.data.DatabasehandlerSpiele;
 import tk.scoreli.liveticker.data.DatabasehandlerUUID;
 import tk.scoreli.liveticker.data.Mitglied;
@@ -47,6 +47,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+/**
+ * Diese Activity regelt die eingaben des Benutzers während eines laufenden
+ * Livespieles. Von dort aus kann man die Veranstaltung zur AnzeigenActivity
+ * schicken und die Spielstände und den Status anpassen.
+ * 
+ * @author philipp
+ *
+ */
 public class ImSpielActivity extends Activity implements
 		OnCheckedChangeListener {
 	/**
@@ -318,7 +326,7 @@ public class ImSpielActivity extends Activity implements
 				 * die Gerätesuche geöffnet.
 				 */
 				Intent serverIntent = new Intent(getApplicationContext(),
-						DeviceListActivity.class);
+						GeräteSuchen.class);
 				startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
 			}
 
@@ -513,7 +521,7 @@ public class ImSpielActivity extends Activity implements
 				if (resultCode == Activity.RESULT_OK) {
 					// Get the device MAC address
 					String address = data.getExtras().getString(
-							DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+							GeräteSuchen.EXTRA_DEVICE_ADDRESS);
 
 					// Get the BLuetoothDevice object
 					BluetoothDevice device = mBluetoothAdapter
@@ -529,7 +537,7 @@ public class ImSpielActivity extends Activity implements
 					// Bluetooth is now enabled, so set up a chat session
 					setupUebertragung();
 					Intent serverIntent = new Intent(getApplicationContext(),
-							DeviceListActivity.class);
+							GeräteSuchen.class);
 					startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
 				} else {
 					// User did not enable Bluetooth or an error occured

@@ -47,7 +47,7 @@ public class LoginActivity extends Activity {
 	 */
 	private ProgressDialog pDialog;
 	private SessionManager session;
-	private SQLiteHandlerLogin dblogin;
+	//private SQLiteHandlerLogin dblogin;
 	private DatabasehandlerUUID dbuuid;
 	// UI references.
 	private AutoCompleteTextView mEmailView;
@@ -67,7 +67,7 @@ public class LoginActivity extends Activity {
 		// Session manager
 		session = new SessionManager(getApplicationContext());
 		// SqLite database handler
-		dblogin = new SQLiteHandlerLogin(getApplicationContext());
+	//	dblogin = new SQLiteHandlerLogin(getApplicationContext());
 
 		dbuuid = new DatabasehandlerUUID(getApplicationContext());
 
@@ -216,7 +216,7 @@ public class LoginActivity extends Activity {
 		// Tag used to cancel the request
 		String tag_string_req = "req_login";
 
-		pDialog.setMessage("Logging in ...");
+		pDialog.setMessage("Einloggen ...");
 		showDialog();
 
 		StringRequest strReq = new StringRequest(Method.POST,
@@ -302,7 +302,7 @@ public class LoginActivity extends Activity {
 	private void logoutUser() {
 		session.setLogin(false);
 		dbuuid.deleteUsers();
-		dblogin.deleteUsers();
+	//	dblogin.deleteUsers();
 
 		// Launching the login activity
 		Intent intent = new Intent(LoginActivity.this, MainActivity.class);

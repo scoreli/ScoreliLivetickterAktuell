@@ -20,6 +20,15 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Diese Activity ist für die Anzeige zuständig. In der App ist es das
+ * Scoreboard. Sie empfängt Daten über Bluetooth und gibt sie auf dem Screen
+ * aus. Außerdem ist sie eine Fullscreen Activity. Das heißt es werden die
+ * Onscreentasten und die Statusleiste ausgeblendet.
+ * 
+ * @author philipp
+ *
+ */
 public class AnzeigeActivity extends Activity {
 	TextView AnzeigeHeima, AnzeigekleinHeima, AnzeigeGasta, AnzeigekleinGasta,
 			AnzeigeStatusa;
@@ -88,9 +97,9 @@ public class AnzeigeActivity extends Activity {
 		try {
 			/**
 			 * Hier wird das Scoreboard aktualisiert. Beim ersten Starten wird
-			 * das schon vollführt,weil beim Beenden/Abreisen der Verbindung die
-			 * Activity neugeladen wird. Dann wird der zuletz gespeicherte wert
-			 * übergeben.
+			 * das schon vollfuehrt,weil beim Beenden/Abreißen der Verbindung
+			 * die Activity neugeladen wird. Dann wird der zuletz gespeicherte
+			 * wert übergeben.
 			 */
 			aktualisiereScoreboard(deserialize(getIntent().getExtras()
 					.getByteArray(MainActivity.KEY)));
@@ -102,7 +111,7 @@ public class AnzeigeActivity extends Activity {
 			e.printStackTrace();
 		}
 		/**
-		 * Hat das Gerät Bluetooth ?
+		 * Hat das Geraet Bluetooth ?
 		 */
 		// Get local Bluetooth adapter
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -148,7 +157,7 @@ public class AnzeigeActivity extends Activity {
 	}
 
 	/**
-	 * Wird geprüft ob Bluetooth auch aktiviert wurde. Wenn Bluetooth nicht
+	 * Wird geprueft ob Bluetooth auch aktiviert wurde. Wenn Bluetooth nicht
 	 * aktiviert wurde wird die Activity beendet und man gelangt auf den
 	 * Hauptbildschirm zurück.
 	 */

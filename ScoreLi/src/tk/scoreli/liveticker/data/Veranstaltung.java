@@ -5,14 +5,15 @@ import java.io.Serializable;
 /**
  * Bei dieser Klasse muss das Interface Serializable implementiert werden, damit
  * es für die Bluetoothverbindung serilaisiert werden kann. Hierbei muss noch
- * eine serialVersionUID angegeben werden.
+ * eine serialVersionUID angegeben werden. Dieses Objekt wird für die Erzeugung
+ * und Anzeige der Spielstände benutzt.
  * 
  * @author philipp
  *
  */
 public class Veranstaltung implements Serializable {
 
-	//private static final long serialVersionUID = 1L;
+	// private static final long serialVersionUID = 1L;
 	private String Heimmanschaft, Gastmannschaft, Spielbeginn, Sportart,
 			Status;
 	private long _id;

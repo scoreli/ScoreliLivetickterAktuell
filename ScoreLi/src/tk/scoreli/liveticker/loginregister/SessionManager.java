@@ -4,12 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
-
+/**
+ * Diese Klasse dient zur erstellung der Session. Dieses ist wenn der
+ * Benutzer sich eingeloggt hat, wird eine Session gestartet.
+ * @author philipp
+ */
 public class SessionManager {
-	/**
-	 * Diese Klasse dient zur erstellung der Session. Dieses ist wenn der
-	 * Benutzer sich eingeloggt hat, wird eine Session gestartet.
-	 */
+	
 	// LogCat tag
 	private static String TAG = SessionManager.class.getSimpleName();
 

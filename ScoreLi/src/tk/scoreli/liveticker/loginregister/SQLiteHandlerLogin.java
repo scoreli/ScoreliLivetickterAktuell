@@ -15,7 +15,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class SQLiteHandlerLogin extends SQLiteOpenHelper {
-
+/**
+ * WIrd nicht unbendingt benötigt.
+ */
 	private static final String TAG = SQLiteHandlerLogin.class.getSimpleName();
 
 	// All Static variables

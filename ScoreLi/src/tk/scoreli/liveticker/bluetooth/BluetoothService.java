@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
+import tk.scoreli.liveticker.ImSpielActivity;
 import tk.scoreli.liveticker.SpieleDesUsersActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -93,7 +94,7 @@ public class BluetoothService {
 		mState = state;
 
 		// Give the new state to the Handler so the UI Activity can update
-		mHandler.obtainMessage(SpieleDesUsersActivity.MESSAGE_STATE_CHANGE, state, -1)
+		mHandler.obtainMessage(ImSpielActivity.MESSAGE_STATE_CHANGE, state, -1)
 				.sendToTarget();
 	}
 
@@ -199,9 +200,9 @@ public class BluetoothService {
 		mConnectedThread.start();
 
 		// Send the name of the connected device back to the UI Activity
-		Message msg = mHandler.obtainMessage(SpieleDesUsersActivity.MESSAGE_DEVICE_NAME);
+		Message msg = mHandler.obtainMessage(ImSpielActivity.MESSAGE_DEVICE_NAME);
 		Bundle bundle = new Bundle();
-		bundle.putString(SpieleDesUsersActivity.DEVICE_NAME, device.getName());
+		bundle.putString(ImSpielActivity.DEVICE_NAME, device.getName());
 		msg.setData(bundle);
 		mHandler.sendMessage(msg);
 
@@ -256,9 +257,9 @@ public class BluetoothService {
 		setState(STATE_LISTEN);
 
 		// Send a failure message back to the Activity
-		Message msg = mHandler.obtainMessage(SpieleDesUsersActivity.MESSAGE_TOAST);
+		Message msg = mHandler.obtainMessage(ImSpielActivity.MESSAGE_TOAST);
 		Bundle bundle = new Bundle();
-		bundle.putString(SpieleDesUsersActivity.TOAST, "Unable to connect device");
+		bundle.putString(ImSpielActivity.TOAST, "Unable to connect device");
 		msg.setData(bundle);
 		mHandler.sendMessage(msg);
 	}
@@ -270,9 +271,9 @@ public class BluetoothService {
 		setState(STATE_LISTEN);
 
 		// Send a failure message back to the Activity
-		Message msg = mHandler.obtainMessage(SpieleDesUsersActivity.MESSAGE_TOAST);
+		Message msg = mHandler.obtainMessage(ImSpielActivity.MESSAGE_TOAST);
 		Bundle bundle = new Bundle();
-		bundle.putString(SpieleDesUsersActivity.TOAST, "Device connection was lost");
+		bundle.putString(ImSpielActivity.TOAST, "Device connection was lost");
 		msg.setData(bundle);
 		mHandler.sendMessage(msg);
 	}
@@ -461,7 +462,7 @@ public class BluetoothService {
 					bytes = mmInStream.read(buffer);
 
 					// Send the obtained bytes to the UI Activity
-					mHandler.obtainMessage(SpieleDesUsersActivity.MESSAGE_READ, bytes,
+					mHandler.obtainMessage(ImSpielActivity.MESSAGE_READ, bytes,
 							-1, buffer).sendToTarget();
 				} catch (IOException e) {
 					Log.e(TAG, "disconnected", e);
@@ -482,7 +483,7 @@ public class BluetoothService {
 				mmOutStream.write(buffer);
 
 				// Share the sent message back to the UI Activity
-				mHandler.obtainMessage(SpieleDesUsersActivity.MESSAGE_WRITE, -1, -1,
+				mHandler.obtainMessage(ImSpielActivity.MESSAGE_WRITE, -1, -1,
 						buffer).sendToTarget();
 			} catch (IOException e) {
 				Log.e(TAG, "Exception during write", e);

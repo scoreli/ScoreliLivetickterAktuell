@@ -1,8 +1,15 @@
 package tk.scoreli.liveticker.data;
 
+/**
+ * Hier werden die Eigenschaften für das Objekt Mitglied vorgegeben. Dieses
+ * Objekt ist für den eingeloggten Zustand wichtig, da es dort die uuid
+ * speichert und mit dieser dann die Datenbank zugriffe betätigt.
+ * 
+ * @author philipp
+ *
+ */
 public class Mitglied {
 
-	// private variables
 	long _id;
 	String uuid;
 

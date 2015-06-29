@@ -1,17 +1,21 @@
 package tk.scoreli.liveticker.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+/**
+ * Hier wird die SqlLite Datenbank konfiguriert. Diese wird dann erstellt.
+ * Hier sind auch alle Methoden vermerkt die für die Datenbankzugriffe
+ * notwendig sind. Hierbei werden jeweils Sql zugriffe vollzogen. Hier
+ * werden die Daten von dem angemeldeten User gespeichert. Damit es dann für
+ * weitere Zwecke verwendet kann.
+ * @author philipp
+ */
 
 public class DatabasehandlerUUID extends SQLiteOpenHelper {
-	// All Static variables
+		// All Static variables
 	// Database Version
 	private static final int DATABASE_VERSION = 1;
 
@@ -29,7 +33,10 @@ public class DatabasehandlerUUID extends SQLiteOpenHelper {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
-	// Creating Tables
+	/**
+	 * Mit dieser Methode wird die Sql-lite Datenbank gebaut bzw. die Tabelle.
+	 * Hierbei wird ein Sql-Befehl erzeugt und dieser dann ausgeführt.(execSQL)
+	 */
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_MITGLIEDER + "("
@@ -49,10 +56,10 @@ public class DatabasehandlerUUID extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * All CRUD(Create, Read, Update, Delete) Operations
+	 * Hier wird das Mitglied in der Datenbank eingspeichert.
+	 * 
+	 * @param mitglied
 	 */
-
-	// Adding new contact
 	public void addMitglied(Mitglied mitglied) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
@@ -64,6 +71,12 @@ public class DatabasehandlerUUID extends SQLiteOpenHelper {
 		db.close(); // Closing database connection
 	}
 
+	/**
+	 * Hier wird das Mitglied mit hilfe einer SQL-Abfrage aus der Datenbank geholt und das objekt wird
+	 * zurückggeben.
+	 * 
+	 * @return mitglied
+	 */
 	public Mitglied getMitglied() {
 		// Select All Query
 		String selectQuery = "SELECT  * FROM " + TABLE_MITGLIEDER;
@@ -78,19 +91,26 @@ public class DatabasehandlerUUID extends SQLiteOpenHelper {
 
 	}
 
-	// Deleting single contact
+	/**
+	 * Hier wird ein Mitglied mit hilfe einer SQL-Abfrage gelöscht. Der
+	 * Eintrag/Mitglied wird mit der ID-Referenziert.
+	 * 
+	 * @param mitglied
+	 */
 	public void deleteMitglied(Mitglied mitglied) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.delete(TABLE_MITGLIEDER, MITGLIEDER_ID + " = ?",
 				new String[] { String.valueOf(mitglied.get_id()) });
 		db.close();
 	}
+/**
+ * Mit dieser Methode werden alle Einträger der Datenbank gelöscht.
+ */
 	public void deleteUsers() {
 		SQLiteDatabase db = this.getWritableDatabase();
 		// Delete All Rows
 		db.delete(TABLE_MITGLIEDER, null, null);
 		db.close();
 
-		
 	}
 }

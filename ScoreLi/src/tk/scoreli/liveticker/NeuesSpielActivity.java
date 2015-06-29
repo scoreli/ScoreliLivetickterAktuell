@@ -19,14 +19,25 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+/**
+ * Bei dieser Activity wird ein neues Spiel erstellt und sie schickt sie an die
+ * Datenbank.
+ * 
+ * @author philipp
+ *
+ */
 public class NeuesSpielActivity extends Activity {
 	private Spinner SpinnerSportart;
 	private EditText txfHeimmannschaft, txfGastmannschaft, txfSpielbeginn,
 			txfSpielstandHeim, txfSpielstandGast, txfStatus;
 	private Button btnSpielerstellen;
-	//private CheckBox veranstaltungbeendet;
-	public String[] test = { "Tischtennis", "Fussball", "Handball","Volleyball" };
-	//private int istbeendet=0;
+	// private CheckBox veranstaltungbeendet;
+	/**
+	 * Hier werden die Sportarten festgelegt die Verfügbar sein sollen.
+	 */
+	public String[] Sportarten = { "Tischtennis", "Fussball", "Handball",
+			"Volleyball" };
+	// private int istbeendet=0;
 	DatabasehandlerSpiele db = new DatabasehandlerSpiele(this);
 	DatabasehandlerUUID dbuuid = new DatabasehandlerUUID(this);
 	private SessionManager session;
@@ -50,7 +61,7 @@ public class NeuesSpielActivity extends Activity {
 		internetservice = new InternetService(this);
 		ArrayAdapter<String> Sportartspinneradapter = new ArrayAdapter<String>(
 				NeuesSpielActivity.this,
-				android.R.layout.simple_spinner_dropdown_item, test);
+				android.R.layout.simple_spinner_dropdown_item, Sportarten);
 		SpinnerSportart.setAdapter(Sportartspinneradapter);
 		btnSpielerstellen.setOnClickListener(new OnClickListener() {
 
@@ -60,7 +71,7 @@ public class NeuesSpielActivity extends Activity {
 
 			}
 		});
-		
+
 	}
 
 	public void Spielerstellen() {
@@ -81,6 +92,9 @@ public class NeuesSpielActivity extends Activity {
 		boolean cancel = false;
 		View focusView = null;
 		boolean cancellogin = false;
+		/**
+		 * Hier wird abgeprüft ob die Felder leer sind.
+		 */
 		if (TextUtils.isEmpty(heimmannschaft)) {
 			txfHeimmannschaft
 					.setError(getString(R.string.error_field_required));
@@ -131,6 +145,9 @@ public class NeuesSpielActivity extends Activity {
 			Mitglied abfrage = dbuuid.getMitglied();
 
 			try {
+				/**
+				 * Veranstaltung wird online gespeichert.
+				 */
 				internetservice.registerVeranstaltung(sportart,
 						abfrage.getUuid(), heimmannschaft, gastmannschaft,
 						spielstandHeim, spielstandGast, spielbeginn, status);
@@ -145,6 +162,9 @@ public class NeuesSpielActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Initalisieren der Elemente
+	 */
 	public void init() {
 		SpinnerSportart = (Spinner) findViewById(R.id.spinner_Sportart);
 		txfHeimmannschaft = (EditText) findViewById(R.id.txfHeimmannschaft);
@@ -154,7 +174,7 @@ public class NeuesSpielActivity extends Activity {
 		txfSpielbeginn = (EditText) findViewById(R.id.txfSpielbeginn);
 		btnSpielerstellen = (Button) findViewById(R.id.btnNeuesSpiel);
 		txfStatus = (EditText) findViewById(R.id.txfStatus);
-		
+
 	}
 
 }
