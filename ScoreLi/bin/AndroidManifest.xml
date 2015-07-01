@@ -20,6 +20,17 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
+            android:name=".AnzeigeActivity"
+            android:label="@string/title_activity_anzeige"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".ImSpielActivity"
+            android:label="@string/title_activity_ImSpiel"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
@@ -28,6 +39,23 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".NeuesSpielActivity"
+            android:label="@string/title_activity_neues_spiel"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".SpieleDesUsersActivity"
+            android:label="@string/title_activity_spiele"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".bluetooth.GeraeteSuchen"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_activity_geraetverbinden"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".loginregister.LoginActivity"
@@ -40,53 +68,6 @@
             android:label="@string/title_activity_register"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateVisible" >
-        </activity>
-        <activity
-            android:name=".AnzeigeActivity"
-            android:label="@string/title_activity_anzeige"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
-        <activity
-            android:name=".SteuerungActivity"
-            android:label="@string/title_activity_steuerung"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".SpieleDesUsersActivity"
-            android:label="@string/title_activity_spiele"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".NeuesSpielActivity"
-            android:label="@string/title_activity_neues_spiel"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".ImSpielActivity"
-            android:label="@string/title_activity_ImSpiel"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".bluetooth.GepaarteBtActivity"
-            android:label="@string/title_activity_gepaarte_bt"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".Bluetoothtest"
-            android:label="@string/title_activity_bluetoothtest"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".bluetooth.DeviceListActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_activity_bluetoothtest"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".SpieleAuflistungTTActivity"
-            android:label="@string/title_activity_spiele_auflistung_tt"
-            android:screenOrientation="portrait" >
         </activity>
     </application>
 

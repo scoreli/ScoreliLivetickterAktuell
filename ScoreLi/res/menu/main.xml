@@ -6,11 +6,6 @@
         android:id="@+id/action_example"
         android:showAsAction="withText|ifRoom"
         android:title="@string/action_example"/>
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
 	<item android:id="@+id/menu_anmelden" android:title="@string/menu_Account"></item>
     <item android:id="@+id/menu_Scoreboard" android:title="@string/menu_Scoreboard"></item>
     <item android:id="@+id/menu_Spiele" android:title="@string/menu_AktuelleVeranstaltung"></item>

@@ -5,7 +5,8 @@
     <string name="title_Startseite">Startseite</string>
     <string name="title_Sportart1">Tischtennis</string>
     <string name="title_Sportart2">Fußball</string>
-    <string name="title_Sportart3">Handball</string><string name="title_Sportart4">Volleyball</string>
+    <string name="title_Sportart3">Handball</string>
+    <string name="title_Sportart4">Volleyball</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Aktualisieren</string>
@@ -15,19 +16,13 @@
     <string name="menu_AnzeigenSteuerung">Steuerung</string>
     <string name="menu_Registrieren">Registrieren</string>
     <string name="title_activity_anzeige">Scoreboard</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_steuerung">Steuerung</string>
+    <string name="title_activity_neues_spiel">Neue Veranstaltung</string>
+    <string name="title_activity_gepaarte_bt">Gepaarte Geräte</string>
+    <string name="title_activity_geraetverbinden">Gerät Verbinden</string>
     <string name="menu_AktuelleVeranstaltung">Veranstaltungen</string>
     <string name="title_activity_spiele">Veranstaltungen</string>
     <string name="spiel_neuVeranstaltung">Neue Veranstaltung</string>
-    <string name="title_activity_neues_spiel">Neue Veranstaltung</string>
-
-    <string-array name="SpinnerSportarten">
-        <item>Tischtennis</item>
-        <item>Fußball</item>
-    </string-array>
-
     <string name="txt_spielerstellen">Spiel Erstellen</string>
     <string name="txt_Heimmannschaft">Heimmannschaft</string>
     <string name="txt_Gastmannschaft">Gastmannschaft</string>
@@ -39,11 +34,6 @@
     <string name="txt_Bluetoothan">Bluetooth an</string>
     <string name="txt_Bluetooth">Bluetooth</string>
     <string name="txt_gepaartegeräte">Gepaarte Geräte</string>
-    <string name="title_activity_gepaarte_bt">Gepaarte Geräte</string>
-    <string name="MY_UUID">fa87c0d0-afac-11de-8a39-0800200c9a66</string>
-    <string name="title_activity_bluetoothtest">Bluetoothtest</string>
-    <string name="title_activity_bluetoothclient">Bluetoothclient</string>
-    <string name="title_activity_bluetooth_server">BluetoothServer</string>
     <string name="text_suchen">Suchen</string>
     <string name="text_gepaartegeraete">Gepaarte Geräte</string>
     <string name="text_neueGeraete">Neue Geräte</string>
@@ -51,10 +41,7 @@
     <string name="text_geraetAuswaehlen">Ein Gerät zum Verbinden auswählen</string>
     <string name="text_keinegefunden">Keine Geräte gefunden</string>
     <string name="text_suchebeendet">Suche beendet</string>
-    <string name="title_activity_main_activitydsf">MainActivitydsf</string>
-    <string name="title_activity_main_activityh">MainActivityh</string>
     <string name="text_loeschen">Löschen</string>
-    <string name="title_activity_spiele_auflistung_tt">SpieleAuflistungTTActivity</string>
     <string name="text_nochkeinMitglied">Noch kein Mitglied? Hier registrieren.</string>
     <string name="text_vornamenachnahme">Vorname Nachname</string>
     <string name="text_logout">Logout</string>
@@ -66,7 +53,5 @@
     <string name="text_zurueck">Zurück</string>
     <string name="text_Veranstaltungbeenden">Veranstaltung beenden</string>
     <string name="text_Veranstaltungbeendet">Veranstaltung Beendet</string>
-    
-    
 
 </resources>
