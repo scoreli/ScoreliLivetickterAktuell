@@ -10,7 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import tk.scoreli.liveticker.bluetooth.BluetoothService;
-import tk.scoreli.liveticker.bluetooth.GeräteSuchen;
+import tk.scoreli.liveticker.bluetooth.GeraeteSuchen;
 import tk.scoreli.liveticker.data.DatabasehandlerSpiele;
 import tk.scoreli.liveticker.data.DatabasehandlerUUID;
 import tk.scoreli.liveticker.data.Mitglied;
@@ -48,9 +48,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
 /**
- * Diese Activity regelt die eingaben des Benutzers während eines laufenden
+ * Diese Activity regelt die eingaben des Benutzers waehrend eines laufenden
  * Livespieles. Von dort aus kann man die Veranstaltung zur AnzeigenActivity
- * schicken und die Spielstände und den Status anpassen.
+ * schicken und die Spielstaende und den Status anpassen.
  * 
  * @author philipp
  *
@@ -58,7 +58,7 @@ import com.android.volley.toolbox.StringRequest;
 public class ImSpielActivity extends Activity implements
 		OnCheckedChangeListener {
 	/**
-	 * Werte für die initalisierung von Im Spiel
+	 * Werte für die initalisierung von im Spiel
 	 * 
 	 */
 	private EditText txfSpielstandHeim, txfSpielstandGast, txfStatus;
@@ -68,7 +68,7 @@ public class ImSpielActivity extends Activity implements
 	// private CheckBox checkboxbeenden;
 	private Switch switch_scoreboard;
 	/**
-	 * Für die Aktualisierung der Spielstände ist eine Datenbankanbindung
+	 * Für die Aktualisierung der Spielstaende ist eine Datenbankanbindung
 	 * notwendig
 	 * 
 	 */
@@ -326,7 +326,7 @@ public class ImSpielActivity extends Activity implements
 				 * die Gerätesuche geöffnet.
 				 */
 				Intent serverIntent = new Intent(getApplicationContext(),
-						GeräteSuchen.class);
+						GeraeteSuchen.class);
 				startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
 			}
 
@@ -521,7 +521,7 @@ public class ImSpielActivity extends Activity implements
 				if (resultCode == Activity.RESULT_OK) {
 					// Get the device MAC address
 					String address = data.getExtras().getString(
-							GeräteSuchen.EXTRA_DEVICE_ADDRESS);
+							GeraeteSuchen.EXTRA_DEVICE_ADDRESS);
 
 					// Get the BLuetoothDevice object
 					BluetoothDevice device = mBluetoothAdapter
@@ -537,7 +537,7 @@ public class ImSpielActivity extends Activity implements
 					// Bluetooth is now enabled, so set up a chat session
 					setupUebertragung();
 					Intent serverIntent = new Intent(getApplicationContext(),
-							GeräteSuchen.class);
+							GeraeteSuchen.class);
 					startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
 				} else {
 					// User did not enable Bluetooth or an error occured

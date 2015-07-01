@@ -54,7 +54,7 @@ public class SpieleDesUsersActivity extends Activity implements
 	private ListView Veranstaltungsliste;
 	/**
 	 * Datenbankanbindung die UUID ist wichtig damit nur die Heruntergeladen
-	 * werden die dem Nutzer gehören.
+	 * werden die dem Nutzer gehoeren.
 	 */
 	DatabasehandlerSpiele db = new DatabasehandlerSpiele(this);
 	DatabasehandlerUUID dbuuid = new DatabasehandlerUUID(this);
@@ -103,6 +103,7 @@ public class SpieleDesUsersActivity extends Activity implements
 		 */
 	}
 
+	
 	@Override
 	public synchronized void onResume() {
 		super.onResume();
@@ -181,7 +182,7 @@ public class SpieleDesUsersActivity extends Activity implements
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		/**
-		 * Hier gelangt man zu dr Activity wo eine Neute Veranstalung erstellt
+		 * Hier gelangt man zu dr Activity wo eine Neue Veranstaltung erstellt
 		 * werden kann.
 		 */
 		if (id == R.id.spiel_neueVeranstaltung) {

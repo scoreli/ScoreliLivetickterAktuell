@@ -33,7 +33,7 @@ public class NeuesSpielActivity extends Activity {
 	private Button btnSpielerstellen;
 	// private CheckBox veranstaltungbeendet;
 	/**
-	 * Hier werden die Sportarten festgelegt die Verfügbar sein sollen.
+	 * Hier werden die Sportarten festgelegt die Verfuegbar sein sollen.
 	 */
 	public String[] Sportarten = { "Tischtennis", "Fussball", "Handball",
 			"Volleyball" };
@@ -74,6 +74,12 @@ public class NeuesSpielActivity extends Activity {
 
 	}
 
+	/**
+	 * Diese Methode wird aufgerufen sobald man auf den Button Spielerstellen
+	 * gedrückt hat. Sie ließt die Daten aus den Textfeldern aus und prüft diese
+	 * ob sie mit Inhalt gefüllt sind. Ist alles korrekt eingegeben wird die
+	 * Veranstaltung ins Internet übertragen.
+	 */
 	public void Spielerstellen() {
 		// Errors zurücksetzten
 		txfHeimmannschaft.setError(null);
@@ -163,7 +169,7 @@ public class NeuesSpielActivity extends Activity {
 	}
 
 	/**
-	 * Initalisieren der Elemente
+	 * Initalisieren der Elemente auf dem Display
 	 */
 	public void init() {
 		SpinnerSportart = (Spinner) findViewById(R.id.spinner_Sportart);

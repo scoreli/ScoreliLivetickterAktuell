@@ -71,13 +71,7 @@ public class NavigationDrawerFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 
 		internetService = new InternetService(getActivity());
-		// db = new DatabasehandlerSpiele(getActivity());
-		// Progress dialog
-		// pDialog = new ProgressDialog(getActivity());
-		// pDialog.setCancelable(false);
-		// Read in the flag indicating whether or not the user has demonstrated
-		// awareness of the
-		// drawer. See PREF_USER_LEARNED_DRAWER for details.
+
 		SharedPreferences sp = PreferenceManager
 				.getDefaultSharedPreferences(getActivity());
 		mUserLearnedDrawer = sp.getBoolean(PREF_USER_LEARNED_DRAWER, false);
@@ -114,7 +108,7 @@ public class NavigationDrawerFragment extends Fragment {
 					}
 				});
 		/**
-		 * Hier kann man die Einzelen Section von der Navigation Bar hinzufügen.
+		 * Hier kann man die Einzelen Section von der Navigation Bar hinzufuegen.
 		 * Diese muss aber auch dann als String in res vorliegen.
 		 */
 		mDrawerListView.setAdapter(new ArrayAdapter<String>(getActionBar()
@@ -286,13 +280,12 @@ public class NavigationDrawerFragment extends Fragment {
 			return true;
 		}
 		/**
-		 * Beim Drücken des Aktualisieren Buttons wird die Methode von Internet
+		 * Beim Druecken des Aktualisieren Buttons wird die Methode von Internet
 		 * Service Aufgerufen.
 		 */
 		if (item.getItemId() == R.id.action_example) {
 			internetService.Veranstaltungholen();
-			Toast.makeText(getActivity(), "Aktualisiert", Toast.LENGTH_SHORT)
-					.show();
+					
 			return true;
 		}
 

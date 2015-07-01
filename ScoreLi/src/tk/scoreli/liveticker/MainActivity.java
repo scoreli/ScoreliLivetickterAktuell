@@ -118,7 +118,7 @@ public class MainActivity extends Activity implements
 		case 2:
 			mTitle = getString(R.string.title_Sportart1);
 			/**
-			 * Hier werden alle Tischtennisveranstaltungen angzeigt. Hierbeit
+			 * Hier werden alle Tischtennisveranstaltungen angzeigt. Hierbei
 			 * wird die Methode getTischtennisVeranstaltungen() aufgerufen.
 			 * Dabei muss die Liste in ein ArrayAdapter des Typs Veranstaltung
 			 * erzeugt werden und die Liste übergeben werden.
@@ -134,8 +134,8 @@ public class MainActivity extends Activity implements
 		case 3:
 			mTitle = getString(R.string.title_Sportart2);
 			/**
-			 * Hier werden alle Fußballveranstaltungen angzeigt. Hierbeit wird
-			 * die Methode getFußballVeranstaltungen() aufgerufen. Dabei muss
+			 * Hier werden alle Fussballveranstaltungen angzeigt. Hierbei wird
+			 * die Methode getFussballVeranstaltungen() aufgerufen. Dabei muss
 			 * die Liste in ein ArrayAdapter des Typs Veranstaltung erzeugt
 			 * werden und die Liste übergeben werden.
 			 */
@@ -148,7 +148,7 @@ public class MainActivity extends Activity implements
 		case 4:
 			mTitle = getString(R.string.title_Sportart3);
 			/**
-			 * Hier werden alle Handballveranstaltungen angzeigt. Hierbeit wird
+			 * Hier werden alle Handballveranstaltungen angzeigt. Hierbei wird
 			 * die Methode getHandballVeranstaltungen() aufgerufen. Dabei muss
 			 * die Liste in ein ArrayAdapter des Typs Veranstaltung erzeugt
 			 * werden und die Liste übergeben werden.

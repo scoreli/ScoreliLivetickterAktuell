@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 /**
  * Diese Activity ist für die Anzeige zuständig. In der App ist es das
- * Scoreboard. Sie empfängt Daten über Bluetooth und gibt sie auf dem Screen
+ * Scoreboard. Sie empfaengt Daten über Bluetooth und gibt sie auf dem Screen
  * aus. Außerdem ist sie eine Fullscreen Activity. Das heißt es werden die
  * Onscreentasten und die Statusleiste ausgeblendet.
  * 
@@ -128,7 +128,7 @@ public class AnzeigeActivity extends Activity {
 			return;
 		}
 		/**
-		 * Das wird benötigt um bei Berührung die Anzeigenelemente auszublenden
+		 * Das wird benoetigt um bei Berührung die Anzeigenelemente auszublenden
 		 * (Fullscreenactivity) Das bewirkt auch das die Anzeigenelemente
 		 * ausgeblendet werden. Außerdem ist jetzt die Nervige
 		 * ActivityBeschriftung weg. http://www
@@ -261,7 +261,7 @@ public class AnzeigeActivity extends Activity {
 	}
 
 	/**
-	 * Der Handler empfängt Nachrichten der BluetoothService klasse. Denn nur
+	 * Der Handler empfaengt Nachrichten der BluetoothService klasse. Denn nur
 	 * durch einen Handler können Daten von einem Thread abgerufen werden.
 	 * 
 	 */
