@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tk.scoreli.liveticker"
+
     android:versionCode="1"
     android:versionName="1.0" >
 
+    <!-- Hier wird die Androidversion festgelegt die das Endgeraet mindestens haben muss. Ausserdem wird die Zielversion ebenfalls festgelegt. -->
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="22" />
-
+    <!-- Hier werden die benoetigten Berechtigungen festgelegt. Werden diese hier vergessen kann die Funktion nicht in der Androidapp benutzt werden. Das bedeutet benoetigt man neue Funktionen muessen meistens die Berechtigungen angepasst werden. Dem User werden diese Berechtigungen bei der Installation angezeigt. -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
     <uses-permission android:name="android.permission.INTERNET" />
-
+<!-- Hier werden muessen die Activitys angegeben werden. Werden diese vergessen stuerzt die App ab. Ausserdem werden hier noch die Eigenschaften der Activity festgelegt. Ein Beispiel ist  die Orientierung der Activity  -->
     <application
         android:name=".loginregister.AppController"
         android:allowBackup="true"
@@ -54,8 +56,8 @@
             android:name=".bluetooth.GeraeteSuchen"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_geraetverbinden"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name=".loginregister.LoginActivity"

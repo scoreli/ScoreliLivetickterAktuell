@@ -3,11 +3,6 @@ package tk.scoreli.liveticker;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import tk.scoreli.liveticker.bluetooth.BluetoothService;
 import tk.scoreli.liveticker.bluetooth.GeraeteSuchen;
@@ -16,11 +11,7 @@ import tk.scoreli.liveticker.data.DatabasehandlerUUID;
 import tk.scoreli.liveticker.data.Mitglied;
 import tk.scoreli.liveticker.data.Veranstaltung;
 import tk.scoreli.liveticker.internet.InternetService;
-import tk.scoreli.liveticker.loginregister.AppConfig;
-import tk.scoreli.liveticker.loginregister.AppController;
-import tk.scoreli.liveticker.loginregister.SessionManager;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
@@ -28,24 +19,17 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.volley.Request.Method;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 
 /**
  * Diese Activity regelt die eingaben des Benutzers waehrend eines laufenden
