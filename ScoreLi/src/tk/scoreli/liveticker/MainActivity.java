@@ -117,63 +117,62 @@ public class MainActivity extends Activity implements
 			break;
 		case 2:
 			mTitle = getString(R.string.title_Sportart1);
-			/**
-			 * Hier werden alle Tischtennisveranstaltungen angzeigt. Hierbei
-			 * wird die Methode getTischtennisVeranstaltungen() aufgerufen.
-			 * Dabei muss die Liste in ein ArrayAdapter des Typs Veranstaltung
-			 * erzeugt werden und die Liste übergeben werden.
-			 * 
-			 * @author philipp
-			 */
-			Veranstaltungenliste.setVisibility(View.VISIBLE);
-			veranstaltungen = db.getTischtennisVeranstaltungen();
-			adapter = new ArrayAdapter<Veranstaltung>(this,
-					android.R.layout.simple_list_item_1, veranstaltungen);
-			Veranstaltungenliste.setAdapter(adapter);
+
+			ZeigeSportartspezifisch(1);
+
 			break;
 		case 3:
 			mTitle = getString(R.string.title_Sportart2);
-			/**
-			 * Hier werden alle Fussballveranstaltungen angzeigt. Hierbei wird
-			 * die Methode getFussballVeranstaltungen() aufgerufen. Dabei muss
-			 * die Liste in ein ArrayAdapter des Typs Veranstaltung erzeugt
-			 * werden und die Liste übergeben werden.
-			 */
-			Veranstaltungenliste.setVisibility(View.VISIBLE);
-			veranstaltungen = db.getFussballVeranstaltungen();
-			adapter = new ArrayAdapter<Veranstaltung>(this,
-					android.R.layout.simple_list_item_1, veranstaltungen);
-			Veranstaltungenliste.setAdapter(adapter);
+
+			ZeigeSportartspezifisch(2);
+
 			break;
 		case 4:
 			mTitle = getString(R.string.title_Sportart3);
-			/**
-			 * Hier werden alle Handballveranstaltungen angzeigt. Hierbei wird
-			 * die Methode getHandballVeranstaltungen() aufgerufen. Dabei muss
-			 * die Liste in ein ArrayAdapter des Typs Veranstaltung erzeugt
-			 * werden und die Liste übergeben werden.
-			 */
-			Veranstaltungenliste.setVisibility(View.VISIBLE);
-			veranstaltungen = db.getHandballVeranstaltungen();
-			adapter = new ArrayAdapter<Veranstaltung>(this,
-					android.R.layout.simple_list_item_1, veranstaltungen);
-			Veranstaltungenliste.setAdapter(adapter);
+
+			ZeigeSportartspezifisch(3);
+
 			break;
 		case 5:
 			mTitle = getString(R.string.title_Sportart4);
-			/**
-			 * Hier werden alle Volleyballveranstaltungen angzeigt. Hierbeit
-			 * wird die Methode getVolleyballVeranstaltungen() aufgerufen. Dabei
-			 * muss die Liste in ein ArrayAdapter des Typs Veranstaltung erzeugt
-			 * werden und die Liste übergeben werden.
-			 */
-			Veranstaltungenliste.setVisibility(View.VISIBLE);
-			veranstaltungen = db.getVolleyballVeranstaltungen();
-			adapter = new ArrayAdapter<Veranstaltung>(this,
-					android.R.layout.simple_list_item_1, veranstaltungen);
-			Veranstaltungenliste.setAdapter(adapter);
+			ZeigeSportartspezifisch(4);
+
 			break;
 		}
+	}
+
+	/**
+	 * 
+	 * Hier werden die Sportarten spezifisch Geholt je nach parameter werden
+	 * diese Geholt. Dabei ändert sich nur die Methoden die die einzelnen
+	 * Sportarten holen von der Datenbank. Dabei wird dann die Sportart noch
+	 * angezeigt.
+	 * 
+	 * @author philipp
+	 *
+	 * @param i
+	 */
+	public void ZeigeSportartspezifisch(int i) {
+		Veranstaltungenliste.setVisibility(View.VISIBLE);
+		switch (i) {
+		case 1:
+			veranstaltungen = db.getTischtennisVeranstaltungen();
+			break;
+		case 2:
+			veranstaltungen = db.getFussballVeranstaltungen();
+			break;
+		case 3:
+			veranstaltungen = db.getHandballVeranstaltungen();
+			break;
+		case 4:
+			veranstaltungen = db.getVolleyballVeranstaltungen();
+			break;
+		}
+
+		adapter = new ArrayAdapter<Veranstaltung>(this,
+				android.R.layout.simple_list_item_1, veranstaltungen);
+		Veranstaltungenliste.setAdapter(adapter);
+
 	}
 
 	public void restoreActionBar() {

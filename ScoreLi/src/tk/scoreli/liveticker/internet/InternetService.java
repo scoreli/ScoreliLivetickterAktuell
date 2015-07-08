@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import tk.scoreli.liveticker.ImSpielActivity;
+import tk.scoreli.liveticker.MainActivity;
 import tk.scoreli.liveticker.NavigationDrawerFragment;
 import tk.scoreli.liveticker.NeuesSpielActivity;
 import tk.scoreli.liveticker.SpieleDesUsersActivity;
@@ -20,9 +21,9 @@ import android.app.ProgressDialog;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.Request.Method;
 import com.android.volley.toolbox.StringRequest;
 
 /**
@@ -48,6 +49,7 @@ public class InternetService extends Activity {
 	private static final String TAG_VeranstaltungenDesUsers = "veranstaltungdesusers";
 	private ProgressDialog pDialog;
 	Activity hans;
+	private MainActivity mainactivity;
 
 	/**
 	 * Hierbei wird die Activity übergeben und dann dem Attribut der Klasse
@@ -277,7 +279,6 @@ public class InternetService extends Activity {
 											spielbeginnj, statusj));
 
 								}
-
 								Toast.makeText(hans.getApplicationContext(),
 										"Aktualisiert", Toast.LENGTH_SHORT)
 										.show();
