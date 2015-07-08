@@ -54,7 +54,7 @@ public class LoginActivity extends Activity {
 	private EditText mPasswordView;
 	private View mProgressView;
 	private View mLoginFormView;
-	private Button btnzuRegister, btnLogout, mEmailSignInButton;
+	private Button btnzuRegister, btnLogout, mEmailSignInButton,btnaccountdelete,btnaccpasswordchange;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,12 +72,16 @@ public class LoginActivity extends Activity {
 		dbuuid = new DatabasehandlerUUID(getApplicationContext());
 
 		btnLogout.setVisibility(View.GONE);
+		btnaccountdelete.setVisibility(View.GONE);
+		btnaccpasswordchange.setVisibility(View.GONE);
 		/*
 		 * Wenn benutzer schon eingeloggt ist. Dann erscheint nur der Logout
 		 * Button. Sonst ist er unsichtbar.
 		 */
 		if (session.isLoggedIn()) {
 			btnLogout.setVisibility(View.VISIBLE);
+			btnaccountdelete.setVisibility(View.VISIBLE);
+			btnaccpasswordchange.setVisibility(View.VISIBLE);
 			mEmailView.setVisibility(View.GONE);
 			mPasswordView.setVisibility(View.GONE);
 			btnzuRegister.setVisibility(View.GONE);
@@ -129,6 +133,8 @@ public class LoginActivity extends Activity {
 		mEmailView = (AutoCompleteTextView) findViewById(R.id.emailregister);
 		btnLogout = (Button) findViewById(R.id.btn_logout);
 		btnzuRegister = (Button) findViewById(R.id.btnzuregister);
+		btnaccountdelete= (Button)findViewById(R.id.btn_acc_loeschen);
+		btnaccpasswordchange=(Button)findViewById(R.id.btn_passwortaendern);
 		mEmailSignInButton = (Button) findViewById(R.id.btn_anmelden);
 		mPasswordView = (EditText) findViewById(R.id.passwordregister);
 		mLoginFormView = findViewById(R.id.register_form);

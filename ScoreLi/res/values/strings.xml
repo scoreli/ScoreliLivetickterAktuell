@@ -53,5 +53,7 @@
     <string name="text_zurueck">Zurück</string>
     <string name="text_Veranstaltungbeenden">Veranstaltung beenden</string>
     <string name="text_Veranstaltungbeendet">Veranstaltung Beendet</string>
+    <string name="text_Accountloeschen">Accountlöschen</string>
+    <string name="text_passwordaendern">Passwort ändern</string>
 
 </resources>
