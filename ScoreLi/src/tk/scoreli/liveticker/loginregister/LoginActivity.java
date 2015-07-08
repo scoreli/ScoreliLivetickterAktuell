@@ -10,6 +10,7 @@ import tk.scoreli.liveticker.MainActivity;
 import tk.scoreli.liveticker.R;
 import tk.scoreli.liveticker.data.DatabasehandlerUUID;
 import tk.scoreli.liveticker.data.Mitglied;
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,12 +18,14 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,14 +50,15 @@ public class LoginActivity extends Activity {
 	 */
 	private ProgressDialog pDialog;
 	private SessionManager session;
-	//private SQLiteHandlerLogin dblogin;
+	// private SQLiteHandlerLogin dblogin;
 	private DatabasehandlerUUID dbuuid;
 	// UI references.
 	private AutoCompleteTextView mEmailView;
 	private EditText mPasswordView;
 	private View mProgressView;
 	private View mLoginFormView;
-	private Button btnzuRegister, btnLogout, mEmailSignInButton,btnaccountdelete,btnaccpasswordchange;
+	private Button btnzuRegister, btnLogout, mEmailSignInButton,
+			btnaccountdelete, btnaccpasswordchange;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +71,7 @@ public class LoginActivity extends Activity {
 		// Session manager
 		session = new SessionManager(getApplicationContext());
 		// SqLite database handler
-	//	dblogin = new SQLiteHandlerLogin(getApplicationContext());
+		// dblogin = new SQLiteHandlerLogin(getApplicationContext());
 
 		dbuuid = new DatabasehandlerUUID(getApplicationContext());
 
@@ -126,6 +130,46 @@ public class LoginActivity extends Activity {
 				logoutUser();
 			}
 		});
+		btnaccountdelete.setOnClickListener(new OnClickListener() {
+			/**
+			 * http://android-er.blogspot.kr/2012/03/example-of-using-
+			 * popupwindow.html
+			 */
+			@Override
+			public void onClick(View v) {
+				LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
+						.getSystemService(LAYOUT_INFLATER_SERVICE);
+				View popupView = layoutInflater.inflate(
+						R.layout.bestaetigenpopup, null);
+				final PopupWindow popupWindow = new PopupWindow(popupView,
+						LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+
+				Button btnDismiss = (Button) popupView
+						.findViewById(R.id.dismiss);
+				btnDismiss.setOnClickListener(new Button.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						popupWindow.dismiss();
+					}
+				});
+				Button btnaccept = (Button) popupView
+						.findViewById(R.id.btn_accept);
+				btnaccept.setOnClickListener(new Button.OnClickListener() {
+					public void onClick(View v) {
+						
+						
+					/**
+					 * Hier kommt der Auszuführende Code rein
+					 */
+						
+						popupWindow.dismiss();
+					}
+				});
+				popupWindow.showAsDropDown(btnaccountdelete, 50, -30);
+			}
+		});
 
 	}
 
@@ -133,8 +177,8 @@ public class LoginActivity extends Activity {
 		mEmailView = (AutoCompleteTextView) findViewById(R.id.emailregister);
 		btnLogout = (Button) findViewById(R.id.btn_logout);
 		btnzuRegister = (Button) findViewById(R.id.btnzuregister);
-		btnaccountdelete= (Button)findViewById(R.id.btn_acc_loeschen);
-		btnaccpasswordchange=(Button)findViewById(R.id.btn_passwortaendern);
+		btnaccountdelete = (Button) findViewById(R.id.btn_acc_loeschen);
+		btnaccpasswordchange = (Button) findViewById(R.id.btn_passwortaendern);
 		mEmailSignInButton = (Button) findViewById(R.id.btn_anmelden);
 		mPasswordView = (EditText) findViewById(R.id.passwordregister);
 		mLoginFormView = findViewById(R.id.register_form);
@@ -212,8 +256,9 @@ public class LoginActivity extends Activity {
 	 * Hierbei wird das Passwort und die Email mit der My SQL Datenbank
 	 * verglichen. Dabei wird die Volley Libary Benutzt. Hierbei wird ein PHP
 	 * Script auf dem Server aberufen. Das dann mittels JSON die Abfragen regelt
-	 * und diese auch so codiert wieder zurückgibt.Dieses funktioniert mit sogenannten Tags. Nach dem Loginvorgang wird
-	 * dann diese Activity beendet und die Main gestartet.
+	 * und diese auch so codiert wieder zurückgibt.Dieses funktioniert mit
+	 * sogenannten Tags. Nach dem Loginvorgang wird dann diese Activity beendet
+	 * und die Main gestartet.
 	 * 
 	 * @param email
 	 * @param password
@@ -308,7 +353,7 @@ public class LoginActivity extends Activity {
 	private void logoutUser() {
 		session.setLogin(false);
 		dbuuid.deleteUsers();
-	//	dblogin.deleteUsers();
+		// dblogin.deleteUsers();
 
 		// Launching the login activity
 		Intent intent = new Intent(LoginActivity.this, MainActivity.class);

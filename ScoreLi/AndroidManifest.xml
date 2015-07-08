@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tk.scoreli.liveticker"
-
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,7 +13,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
     <uses-permission android:name="android.permission.INTERNET" />
-<!-- Hier werden muessen die Activitys angegeben werden. Werden diese vergessen stuerzt die App ab. Ausserdem werden hier noch die Eigenschaften der Activity festgelegt. Ein Beispiel ist  die Orientierung der Activity  -->
+    <!-- Hier werden muessen die Activitys angegeben werden. Werden diese vergessen stuerzt die App ab. Ausserdem werden hier noch die Eigenschaften der Activity festgelegt. Ein Beispiel ist  die Orientierung der Activity -->
     <application
         android:name=".loginregister.AppController"
         android:allowBackup="true"
@@ -71,6 +70,8 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateVisible" >
         </activity>
+        
+        
     </application>
 
 </manifest>

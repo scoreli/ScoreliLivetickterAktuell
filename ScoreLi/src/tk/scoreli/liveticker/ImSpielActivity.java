@@ -12,6 +12,7 @@ import tk.scoreli.liveticker.data.Mitglied;
 import tk.scoreli.liveticker.data.Veranstaltung;
 import tk.scoreli.liveticker.internet.InternetService;
 import android.app.Activity;
+import android.app.ActionBar.LayoutParams;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +29,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -131,11 +134,42 @@ public class ImSpielActivity extends Activity implements
 			}
 		});
 		btnloeschen.setOnClickListener(new OnClickListener() {
-
+			/**
+			 * http://android-er.blogspot.kr/2012/03/example-of-using-
+			 * popupwindow.html
+			 */
 			@Override
 			public void onClick(View v) {
+				LayoutInflater layoutInflater = (LayoutInflater) getBaseContext()
+						.getSystemService(LAYOUT_INFLATER_SERVICE);
+				View popupView = layoutInflater.inflate(
+						R.layout.bestaetigenpopup, null);
+				final PopupWindow popupWindow = new PopupWindow(popupView,
+						LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
-				loeschen();
+				Button btnDismiss = (Button) popupView
+						.findViewById(R.id.dismiss);
+				btnDismiss.setOnClickListener(new Button.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						popupWindow.dismiss();
+					}
+				});
+				Button btnaccept = (Button) popupView
+						.findViewById(R.id.btn_accept);
+				btnaccept.setOnClickListener(new Button.OnClickListener() {
+					public void onClick(View v) {
+						
+						
+						loeschen();
+						
+						popupWindow.dismiss();
+					}
+				});
+				popupWindow.showAsDropDown(btnloeschen, 50, -30);
+				
 			}
 		});
 		btnheimplusein.setOnClickListener(new OnClickListener() {
@@ -219,7 +253,7 @@ public class ImSpielActivity extends Activity implements
 		});
 
 	}
-
+	
 	/**
 	 * Bei dieser Methode wird der Wert des Parameters i dem Spielstand der
 	 * Heimmannschaft der zu bearbeitenden Mannschaft addiert. Außerdem

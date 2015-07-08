@@ -55,5 +55,10 @@
     <string name="text_Veranstaltungbeendet">Veranstaltung Beendet</string>
     <string name="text_Accountloeschen">Accountlöschen</string>
     <string name="text_passwordaendern">Passwort ändern</string>
+    <string name="title_activity_popup">MainActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="text_sindsiesicher">Sind sie sich sicher ?</string>
+    <string name="text_nein">Nein</string>
+    <string name="txt_ja">Ja</string>
 
 </resources>
